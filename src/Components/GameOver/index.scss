@@ -1,0 +1,36 @@
+.gameover {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background: rgba(230, 230, 250, 0.366);
+  height: 100%;
+  width: 100%;
+  .gameover__block {
+    width: 350px;
+    .gameover__text {
+      font-size: 35px;
+      font-weight: bold;
+      color: lightyellow;
+      text-align: center;
+    }
+    .gameover__sound {
+      font-weight: bold;
+      color: azure;
+    }
+    .gameover__range {
+      width: 350px;
+    }
+    .gameover__button {
+      font-size: 35px;
+      width: 350px;
+      background: lightsalmon;
+      border-radius: 15px;
+    }
+    .gameover__button:hover {
+      background: rgb(255, 196, 174);
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 757px;
+  font-size: 25px;
+  background: url("../Img/more.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  overflow-y: hidden;
+}
