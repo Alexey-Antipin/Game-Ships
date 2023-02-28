@@ -1,16 +1,15 @@
-import { useState } from "react";
-import { Game } from "../Components/Game";
-import { GameOver } from "../Components/GameOver";
-import { Preparation } from "../Components/Preparation";
+import { Preparation, GameOver, Game } from "../Components";
+import { ArrayElement } from "../ts";
 import { Context } from "../Context";
+import { useState } from "react";
 import "./index.scss";
 
 export const App = () => {
-  const [ready, setReady] = useState(0);
-  const [element, setElement] = useState({ array: [] });
-  const [player, setPlayer] = useState(8);
-  const [enemy, setEnemy] = useState(8);
-  const [sound, setSound] = useState(0.0);
+  const [element, setElement] = useState<ArrayElement>({ array: [] });
+  const [sound, setSound] = useState<number>(0.5);
+  const [player, setPlayer] = useState<number>(8);
+  const [enemy, setEnemy] = useState<number>(8);
+  const [ready, setReady] = useState<number>(0);
 
   return (
     <div className="app">

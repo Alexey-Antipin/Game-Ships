@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Context } from "../../Context";
 import "./index.scss";
 
 export const GameOver = () => {
   const context = useContext(Context);
-  const [win, setWin] = useState("");
+  const [win, setWin] = useState<string>("");
 
   useEffect(() => {
     checkWin();
@@ -34,22 +32,22 @@ export const GameOver = () => {
     <div className="gameover">
       <div className="gameover__block">
         <div className="gameover__text">{win}</div>
-        <label className="gameover__sound" for="volume">
+        <label className="gameover__sound" htmlFor="volume">
           Звук
         </label>
         <input
           className="gameover__range"
-          id="volume"
-          type="range"
-          min="0.0"
-          max="1.0"
-          step="0.1"
+          onChange={(e) =>
+            context.setSound(e.target.value as unknown as number)
+          }
           value={context.sound}
-          onChange={(e) => context.setSound(e.target.value)}
+          type="range"
+          id="volume"
+          step="0.1"
+          max="1.0"
+          min="0.0"
         />
-        <button
-          className="gameover__button"
-          onClick={() => newGame()}>
+        <button className="gameover__button" onClick={() => newGame()}>
           Играть ещё раз.
         </button>
       </div>

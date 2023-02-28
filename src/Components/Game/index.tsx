@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { ArrayElement } from "../../ts";
 import { Context } from "../../Context";
 import fire from "../../Audio/fire.mp3";
 import "./index.scss";
@@ -32,17 +33,17 @@ export const Game = () => {
     context.setElement(massive);
   };
 
-  const clickField = (el) => {
+  const clickField = (el: { id: number }) => {
     let id = el.id;
 
     let audio = new Audio(fire);
-    audio.volume = context.sound
+    audio.volume = context.sound;
     audio.play();
 
     if (context.element.array[id].class === "element-enemy") {
-      context.setElement((state) => {
+      context.setElement((state: ArrayElement) => {
         return {
-          array: state.array.map((elem) =>
+          array: state.array.map((elem: { id: number }) =>
             elem.id === id
               ? {
                   id: id,
@@ -56,9 +57,9 @@ export const Game = () => {
       });
       context.setEnemy(context.enemy - 1);
     } else {
-      context.setElement((state) => {
+      context.setElement((state: ArrayElement) => {
         return {
-          array: state.array.map((elem) =>
+          array: state.array.map((elem: { id: number }) =>
             elem.id === id
               ? {
                   id: id,
@@ -74,15 +75,13 @@ export const Game = () => {
     logicEnemy(id);
   };
 
-  const logicEnemy = (id) => {
-    let randNumber;
+  const logicEnemy = (id: number) => {
+    let randNumber: number;
     while (true) {
       let num = Math.round(Math.random() * 47);
       if (
-        (id !== num &&
-          context.element.array[num].class === "element-ally") ||
-        (id !== num &&
-          context.element.array[num].class === "element-sea")
+        (id !== num && context.element.array[num].class === "element-ally") ||
+        (id !== num && context.element.array[num].class === "element-sea")
       ) {
         randNumber = num;
         break;
@@ -91,9 +90,9 @@ export const Game = () => {
     }
 
     if (context.element.array[randNumber].class === "element-ally") {
-      context.setElement((state) => {
+      context.setElement((state: ArrayElement) => {
         return {
-          array: state.array.map((elem) =>
+          array: state.array.map((elem: { id: number }) =>
             elem.id === randNumber
               ? {
                   id: randNumber,
@@ -108,9 +107,9 @@ export const Game = () => {
       context.setPlayer(context.player - 1);
       return;
     } else {
-      context.setElement((state) => {
+      context.setElement((state: ArrayElement) => {
         return {
-          array: state.array.map((elem) =>
+          array: state.array.map((elem: { id: number }) =>
             elem.id === randNumber
               ? {
                   id: randNumber,
@@ -128,11 +127,10 @@ export const Game = () => {
   return (
     <div className="game">
       <div className="game__block">
-        <div className="game__block-player">
-          Player:{context.player}
-        </div>
+        <div className="game__block-player">Player:{context.player}</div>
         <div className="game__block-enemy">Enemy:{context.enemy}</div>
       </div>
+
       <div className="game__container">
         {context.element.array.map((el) => {
           return (

@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Context } from "../../Context";
+import { ArrayElement } from "../../ts";
 import "./index.scss";
 
 export const Preparation = () => {
-  const [ship, setShip] = useState(0);
+  const [ship, setShip] = useState<number>(0);
   const context = useContext(Context);
 
   const createElements = () => {
@@ -20,11 +20,11 @@ export const Preparation = () => {
     context.setElement({ array: massive });
   };
 
-  const clickElement = (el) => {
+  const clickElement = (el: { id: number }) => {
     let id = el.id;
 
     if (context.element.array[id].class === "element-ally") {
-      context.setElement((state) => {
+      context.setElement((state:ArrayElement) => {
         return {
           array: state.array.map((elem) =>
             elem.id === id
@@ -42,7 +42,7 @@ export const Preparation = () => {
     }
 
     if (ship < 8) {
-      context.setElement((state) => {
+      context.setElement((state:ArrayElement) => {
         return {
           array: state.array.map((elem) =>
             elem.id === id
@@ -69,6 +69,7 @@ export const Preparation = () => {
       <div className="preparation__text">
         Кораблей расставлено: {ship} из 8.
       </div>
+
       <div className="preparation__container">
         {context.element.array.map((el) => {
           return (
@@ -81,6 +82,7 @@ export const Preparation = () => {
           );
         })}
       </div>
+      
       <button
         className="preparation__button"
         disabled={ship !== 8}
